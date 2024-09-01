@@ -10,6 +10,6 @@ const appointmentSchema = new Schema({
 });
 
 const Appointment =
-    mongoose.model('Appointment', appointmentSchema);
+    mongoose.model('hsp-Appointment', appointmentSchema);
 
 module.exports = Appointment;

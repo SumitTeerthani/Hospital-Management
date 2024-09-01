@@ -8,5 +8,5 @@ const patientSchema = new Schema({
     gender: { type: String, required: true },
     // Add more fields as needed
 });
-const Patient = mongoose.model('Patient', patientSchema);
+const Patient = mongoose.model('hsp-Patient', patientSchema);
 module.exports = Patient;

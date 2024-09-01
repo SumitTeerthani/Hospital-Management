@@ -1,65 +1,54 @@
-//App.js
 import React from 'react';
 import {
-    BrowserRouter as Router,
-    Routes, Route,
-    Link, useNavigate
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
 } from 'react-router-dom';
-import Appointments
-    from './components/Appointments';
-import Doctors from './components/Doctors';
-import Patients from './components/Patients';
-import './App.css'
+import Appointments from './componenets/appointment';
+import Doctors from './componenets/doctor';
+import Patients from './componenets/patients';
+import './App.css';
 
-const App = () =&gt; {
-    const isLinkActive =
-        (path) =&gt;
-            window.location.pathname === path;
-    return (
-        &lt;Router&gt;
-            &lt;div className=&quot;container&quot;&gt;
-                &lt;h1 style={{ color: &quot;green&quot; }}&gt;
-                    GFG- Hospital Managment App
-                &lt;/h1&gt;
-                &lt;nav&gt;
-                    &lt;ul&gt;
-                        &lt;li className={
-                            isLinkActive('/appointments')
-                                ? 'active' : ''}&gt;
-                            &lt;Link to=&quot;/appointments&quot;&gt;
-                                Appointments
-                            &lt;/Link&gt;
-                        &lt;/li&gt;
-                        &lt;li className={
-                            isLinkActive('/doctors') ?
-                                'active' : ''}&gt;
-                            &lt;Link to=&quot;/doctors&quot;&gt;
-                                Doctors
-                            &lt;/Link&gt;
-                        &lt;/li&gt;
-                        &lt;li className={
-                            isLinkActive('/patients') ?
-                                'active' : ''}&gt;
-                            &lt;Link to=&quot;/patients&quot;&gt;
-                                Patients
-                            &lt;/Link&gt;
-                        &lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/nav&gt;
+// Navbar component to handle navigation and active link styles
+const Navbar = () => {
+  const location = useLocation();
 
-                &lt;Routes&gt;
-                    &lt;Route path=&quot;/appointments&quot;
-                        element={&lt;Appointments /&gt;} /&gt;
-                    &lt;Route path=&quot;/&quot;
-                        element={&lt;Appointments /&gt;} /&gt;
-                    &lt;Route path=&quot;/doctors&quot;
-                        element={&lt;Doctors /&gt;} /&gt;
-                    &lt;Route path=&quot;/patients&quot;
-                        element={&lt;Patients /&gt;} /&gt;
-                &lt;/Routes&gt;
-            &lt;/div&gt;
-        &lt;/Router&gt;
-    );
-}
+  const isLinkActive = (path) => location.pathname === path;
+
+  return (
+    <nav>
+      <ul>
+        <li className={isLinkActive('/appointments') ? 'active' : ''}>
+          <Link to="/appointments">Appointments</Link>
+        </li>
+        <li className={isLinkActive('/doctors') ? 'active' : ''}>
+          <Link to="/doctors">Doctors</Link>
+        </li>
+        <li className={isLinkActive('/patients') ? 'active' : ''}>
+          <Link to="/patients">Patients</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <div className="container">
+        <h1 style={{ color: 'green' }}> Hospital Management App</h1>
+        <Navbar />
+        <Routes>
+          <Route path="/appointments" element={<Appointments />} />
+          <Route path="/" element={<Appointments />} />
+          <Route path="/doctors" element={<Doctors />} />
+          <Route path="/patients" element={<Patients />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
 
 export default App;

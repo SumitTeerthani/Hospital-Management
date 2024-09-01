@@ -9,6 +9,6 @@ const doctorSchema = new Schema({
 });
 
 const Doctor =
-    mongoose.model('Doctor', doctorSchema);
+    mongoose.model('hsp-Doctor', doctorSchema);
 
 module.exports = Doctor;
